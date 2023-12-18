@@ -12,7 +12,7 @@ const authenticate = async (req, res, next) => {
         throw HttpError(401, "'Not authorized'");
     }
     const [bearer, token] = authorization.split(" ");
-    if (bearer !== "Bearer") {
+    if (bearer !== "Bearer" || !token) {
     throw HttpError(401, 'Not authorized');
 }
 try {
@@ -29,3 +29,4 @@ try {
 }
 
 export default ctrlWrapper(authenticate) ;
+
